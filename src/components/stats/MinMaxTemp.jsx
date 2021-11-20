@@ -1,8 +1,46 @@
 import React from "react";
+import styled from "styled-components";
+
+const MinMaxCard = styled.article`
+	background-color: white;
+	border-radius: 16px;
+	min-height: 220px;
+	box-shadow: 0px 8px 24px rgba(149, 157, 165, 0.2);
+	padding: 1rem;
+
+	h2 {
+		font-size: 14pt;
+		font-weight: normal;
+		color: #888;
+		margin-bottom: 2rem;
+	}
+
+	div {
+		font-size: 24pt;
+		margin-left: 40px;
+		font-weight: 700;
+
+		span {
+			font-size: 12pt;
+		}
+	}
+
+	.separator {
+		display: flex;
+		align-items: center;
+		gap: 1rem;
+		margin-left: 0;
+
+		hr {
+			width: 96px;
+			border: 1px solid black;
+		}
+	}
+`;
 
 const MinMaxTemp = ({ minTemp, maxTemp, unit }) => {
 	return (
-		<article className="min-max-temp">
+		<MinMaxCard>
 			<h2>Min/Max Temperature</h2>
 			<div>
 				{maxTemp}°{unit} <span>Max</span>
@@ -35,7 +73,7 @@ const MinMaxTemp = ({ minTemp, maxTemp, unit }) => {
 			<div>
 				{minTemp}°{unit} <span>Min</span>
 			</div>
-		</article>
+		</MinMaxCard>
 	);
 };
 

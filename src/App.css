@@ -24,7 +24,7 @@ main .main-content {
 	padding: 48px 42px 32px 42px;
 }
 
-/* _____SIDEBAR______ */
+/*_____SIDEBAR______*/
 
 .searchbar {
 	display: flex;
@@ -148,7 +148,7 @@ h1 {
 .stats {
 	margin-top: 32px;
 	display: grid;
-	grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+	grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
 	row-gap: 24px;
 	column-gap: 16px;
 }
@@ -159,33 +159,4 @@ h1 {
 	min-height: 220px;
 	box-shadow: 0px 8px 24px rgba(149, 157, 165, 0.2);
 	padding: 1rem;
-}
-
-.min-max-temp h2 {
-	font-size: 14pt;
-	font-weight: normal;
-	color: #888;
-	margin-bottom: 2rem;
-}
-
-.min-max-temp div {
-	font-size: 24pt;
-	margin-left: 40px;
-	font-weight: 700;
-}
-
-.min-max-temp span {
-	font-size: 12pt;
-}
-
-.min-max-temp .separator {
-	display: flex;
-	align-items: center;
-	gap: 1rem;
-	margin-left: 0;
-}
-
-.min-max-temp .separator hr {
-	width: 96px;
-	border: 1px solid black;
 }

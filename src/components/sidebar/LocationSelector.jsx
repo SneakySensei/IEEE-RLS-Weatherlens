@@ -1,9 +1,36 @@
-import React from "react";
+import React, { useState } from "react";
+
+const preferredLocations = [
+	"New York, US",
+	"Chennai, TN",
+	"Kolkata, WB",
+	"Delhi, IN",
+];
 
 const LocationSelector = () => {
+	const [activeLocation, setActiveLocation] = useState(0);
+
+	const handleLeft = () => {
+		let temp = activeLocation;
+		temp--;
+		if (temp < 0) {
+			temp = preferredLocations.length - 1;
+		}
+		setActiveLocation(temp);
+	};
+
+	const handleRight = () => {
+		let temp = activeLocation;
+		temp++;
+		if (temp > preferredLocations.length - 1) {
+			temp = 0;
+		}
+		setActiveLocation(temp);
+	};
+
 	return (
 		<div className="location-container">
-			<button>
+			<button onClick={handleLeft}>
 				<svg
 					width="24"
 					height="24"
@@ -17,10 +44,8 @@ const LocationSelector = () => {
 					/>
 				</svg>
 			</button>
-			<div>
-				New York, <span>US</span>
-			</div>
-			<button>
+			<div>{preferredLocations[activeLocation]}</div>
+			<button onClick={handleRight}>
 				<svg
 					width="24"
 					height="24"
