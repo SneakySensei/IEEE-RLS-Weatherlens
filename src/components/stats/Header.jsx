@@ -3,8 +3,8 @@ import React from "react";
 const Header = () => {
 	return (
 		<header>
-			<button class="unit-toggle">
-				<div class="active">°C</div>
+			<button className="unit-toggle">
+				<div className="active">°C</div>
 				<div>°F</div>
 			</button>
 		</header>

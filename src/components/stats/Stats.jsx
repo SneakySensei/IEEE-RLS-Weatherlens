@@ -1,4 +1,5 @@
-import React from "react";
+import styled from "styled-components";
+
 import AirQuality from "./AirQuality";
 import Header from "./Header";
 import Humidity from "./Humidity";
@@ -7,20 +8,25 @@ import SunriseSunset from "./SunriseSunset";
 import Visibility from "./Visibility";
 import WindStatus from "./WindStatus";
 
-const Stats = () => {
+const StatsContainer = styled.section`
+	flex: 6.5;
+	padding: 48px 42px 32px 42px;
+`;
+
+const Stats = ({ data }) => {
 	return (
-		<section className="main-content">
+		<StatsContainer className="main-content">
 			<Header />
 			<h1>Today’s Highlights</h1>
-			<section class="stats">
+			<section className="stats">
 				<MinMaxTemp minTemp={20} maxTemp={25} unit="F" />
 				<WindStatus speed={7.7} direction={135} />
 				<SunriseSunset riseTime={"6:35AM"} setTime={"5:42PM"} />
 				<Humidity humidity={12} />
 				<Visibility visibility={2.0} />
-				<AirQuality indexValue={7} />
+				<AirQuality indexValue={data?.air?.list[0].main.aqi} />
 			</section>
-		</section>
+		</StatsContainer>
 	);
 };
 

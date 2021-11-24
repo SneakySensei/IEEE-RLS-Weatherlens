@@ -1,8 +1,22 @@
-import React from "react";
+import styled from "styled-components";
+
+const SearchbarContainer = styled.div`
+	display: flex;
+	align-items: center;
+	border: 1px solid #888;
+	padding: 0 10px;
+	border-radius: 8px;
+
+	input {
+		all: unset;
+		flex: 1;
+		padding: 12px 16px;
+	}
+`;
 
 const Searchbar = () => {
 	return (
-		<div className="searchbar">
+		<SearchbarContainer>
 			<svg
 				width="20"
 				height="20"
@@ -13,9 +27,9 @@ const Searchbar = () => {
 				<path
 					d="M17.5 17.5L13.7617 13.755L17.5 17.5ZM15.8334 8.74999C15.8334 10.6286 15.0871 12.4303 13.7587 13.7587C12.4303 15.087 10.6286 15.8333 8.75002 15.8333C6.8714 15.8333 5.06973 15.087 3.74135 13.7587C2.41296 12.4303 1.66669 10.6286 1.66669 8.74999C1.66669 6.87137 2.41296 5.0697 3.74135 3.74132C5.06973 2.41293 6.8714 1.66666 8.75002 1.66666C10.6286 1.66666 12.4303 2.41293 13.7587 3.74132C15.0871 5.0697 15.8334 6.87137 15.8334 8.74999V8.74999Z"
 					stroke="black"
-					stroke-width="1.91667"
-					stroke-linecap="round"
-					stroke-linejoin="round"
+					strokeWidth="1.91667"
+					strokeLinecap="round"
+					strokeLinejoin="round"
 				/>
 			</svg>
 			<input type="text" placeholder="Search for places..." />
@@ -31,7 +45,7 @@ const Searchbar = () => {
 					fill="#888888"
 				/>
 			</svg>
-		</div>
+		</SearchbarContainer>
 	);
 };
 

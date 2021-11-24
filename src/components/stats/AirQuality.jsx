@@ -29,12 +29,20 @@ const AirQualityCard = styled.article`
 	}
 `;
 
+const statusStrings = {
+	1: "Good",
+	2: "Fair",
+	3: "Moderate",
+	4: "Poor",
+	5: "Very Poor",
+};
+
 const AirQuality = ({ indexValue }) => {
 	return (
 		<AirQualityCard>
 			<h2>Air Quality</h2>
 			<div>{indexValue}</div>
-			<footer>Very Poor</footer>
+			<footer>{statusStrings[indexValue]}</footer>
 		</AirQualityCard>
 	);
 };

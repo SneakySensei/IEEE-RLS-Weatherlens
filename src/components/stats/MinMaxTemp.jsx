@@ -56,16 +56,16 @@ const MinMaxTemp = ({ minTemp, maxTemp, unit }) => {
 					<path
 						d="M6 3L2 7M6 3V21V3ZM6 3L10 7L6 3Z"
 						stroke="black"
-						stroke-width="2"
-						stroke-linecap="round"
-						stroke-linejoin="round"
+						strokeWidth="2"
+						strokeLinecap="round"
+						strokeLinejoin="round"
 					/>
 					<path
 						d="M18 21L14 17M18 21V3V21ZM18 21L22 17L18 21Z"
 						stroke="black"
-						stroke-width="2"
-						stroke-linecap="round"
-						stroke-linejoin="round"
+						strokeWidth="2"
+						strokeLinecap="round"
+						strokeLinejoin="round"
 					/>
 				</svg>
 				<hr />

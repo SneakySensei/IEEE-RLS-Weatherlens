@@ -1,4 +1,36 @@
-import React, { useState } from "react";
+import { useState } from "react";
+import styled from "styled-components";
+
+const LocationSelectorContainer = styled.div`
+	margin-top: auto;
+	display: flex;
+	align-items: center;
+
+	button {
+		all: unset;
+		cursor: pointer;
+		transition: background-color 200ms ease;
+		background-color: transparent;
+		height: 24px;
+		width: 24px;
+		border-radius: 20px;
+		padding: 4px;
+	}
+
+	button:hover {
+		background-color: #aaa;
+	}
+
+	div {
+		flex: 1;
+		text-align: center;
+		font-size: 18pt;
+	}
+
+	div span {
+		color: #888;
+	}
+`;
 
 const preferredLocations = [
 	"New York, US",
@@ -7,7 +39,7 @@ const preferredLocations = [
 	"Delhi, IN",
 ];
 
-const LocationSelector = () => {
+const LocationSelector = ({ data }) => {
 	const [activeLocation, setActiveLocation] = useState(0);
 
 	const handleLeft = () => {
@@ -29,7 +61,7 @@ const LocationSelector = () => {
 	};
 
 	return (
-		<div className="location-container">
+		<LocationSelectorContainer className="location-container">
 			<button onClick={handleLeft}>
 				<svg
 					width="24"
@@ -44,7 +76,10 @@ const LocationSelector = () => {
 					/>
 				</svg>
 			</button>
-			<div>{preferredLocations[activeLocation]}</div>
+			{/* <div>{preferredLocations[activeLocation]}</div> */}
+			<div>
+				{data?.name}, {data?.sys?.country}
+			</div>
 			<button onClick={handleRight}>
 				<svg
 					width="24"
@@ -59,7 +94,7 @@ const LocationSelector = () => {
 					/>
 				</svg>
 			</button>
-		</div>
+		</LocationSelectorContainer>
 	);
 };
 

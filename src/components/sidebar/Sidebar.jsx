@@ -1,9 +1,55 @@
+import styled from "styled-components";
+import moment from "moment";
+
 import Searchbar from "./Searchbar";
 import LocationSelector from "./LocationSelector";
 
-const Sidebar = () => {
+const SidebarContainer = styled.aside`
+	background-color: #fff;
+	flex: 3.5;
+	min-width: 360px;
+	padding: 48px 42px 32px 42px;
+	display: flex;
+	flex-direction: column;
+
+	.weather-icon {
+		margin: 0 auto;
+		display: block;
+		margin-top: 40px;
+	}
+
+	.temperature {
+		font-size: 44pt;
+	}
+
+	.feels {
+		font-size: 12pt;
+	}
+
+	.separator {
+		width: 96px;
+		border: 1px solid black;
+		margin: 16px 0;
+	}
+
+	.date {
+		font-size: 18pt;
+	}
+
+	.date span {
+		color: #888;
+	}
+
+	.description {
+		text-transform: capitalize;
+		font-size: 16pt;
+		margin-top: 16px;
+	}
+`;
+
+const Sidebar = ({ data }) => {
 	return (
-		<aside>
+		<SidebarContainer>
 			<Searchbar />
 			<svg
 				className="weather-icon"
@@ -14,22 +60,22 @@ const Sidebar = () => {
 				xmlns="http://www.w3.org/2000/svg"
 			>
 				<path
-					fill-rule="evenodd"
-					clip-rule="evenodd"
+					fillRule="evenodd"
+					clipRule="evenodd"
 					d="M160 276C224.065 276 276 224.065 276 160C276 95.935 224.065 44 160 44C95.935 44 44 95.935 44 160C44 224.065 95.935 276 160 276ZM280 160C280 226.274 226.274 280 160 280C93.7258 280 40 226.274 40 160C40 93.7258 93.7258 40 160 40C226.274 40 280 93.7258 280 160Z"
 					fill="#FFC169"
-					fill-opacity="0.4"
+					fillOpacity="0.4"
 				/>
 				<path
-					fill-rule="evenodd"
-					clip-rule="evenodd"
+					fillRule="evenodd"
+					clipRule="evenodd"
 					d="M159.333 260C214.93 260 260 214.93 260 159.333C260 103.737 214.93 58.6667 159.333 58.6667C103.737 58.6667 58.6666 103.737 58.6666 159.333C58.6666 214.93 103.737 260 159.333 260ZM265.333 159.333C265.333 217.876 217.876 265.333 159.333 265.333C100.791 265.333 53.3333 217.876 53.3333 159.333C53.3333 100.791 100.791 53.3333 159.333 53.3333C217.876 53.3333 265.333 100.791 265.333 159.333Z"
 					fill="#FFCB66"
-					fill-opacity="0.6"
+					fillOpacity="0.6"
 				/>
 				<path
-					fill-rule="evenodd"
-					clip-rule="evenodd"
+					fillRule="evenodd"
+					clipRule="evenodd"
 					d="M159.333 249.333C209.039 249.333 249.333 209.039 249.333 159.333C249.333 109.628 209.039 69.3333 159.333 69.3333C109.628 69.3333 69.3333 109.628 69.3333 159.333C69.3333 209.039 109.628 249.333 159.333 249.333Z"
 					fill="#FEE25C"
 				/>
@@ -44,15 +90,18 @@ const Sidebar = () => {
 					stroke="#888888"
 				/>
 			</svg>
-			<article className="temperature">23°C</article>
-			<article className="feels">Feels like 22.5°C</article>
+			<article className="temperature">{data?.main?.temp}°C</article>
+			<article className="feels">Feels like {data?.main?.feels_like}°C</article>
 			<hr className="separator" />
 			<div className="date">
-				Monday, <span>5:16PM</span>
+				{moment(data?.dt * 1000).format("dddd")},{" "}
+				<span>{moment(data?.dt * 1000).format("hh:mmA")}</span>
 			</div>
-			<div className="description">Mostly Cloudy</div>
-			<LocationSelector />
-		</aside>
+			<div className="description">
+				{Array.isArray(data?.weather) && data?.weather[0].description}
+			</div>
+			<LocationSelector data={data} />
+		</SidebarContainer>
 	);
 };
 
