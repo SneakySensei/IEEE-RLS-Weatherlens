@@ -1,11 +1,17 @@
 import { useEffect, useState } from "react";
-import styled from "styled-components";
+import styled, { createGlobalStyle } from "styled-components";
 import axios from "axios";
 
 import Sidebar from "./components/sidebar/Sidebar";
 import Stats from "./components/stats/Stats";
 
-import "./App.css";
+const GlobalStyles = createGlobalStyle`
+	* {
+		box-sizing: border-box;
+		margin: 0;
+		font-family: "Nunito", sans-serif;
+	}
+`;
 
 const PageContainer = styled.main`
 	display: flex;
@@ -41,10 +47,13 @@ const App = () => {
 	console.log(weatherData);
 
 	return (
-		<PageContainer>
-			<Sidebar data={weatherData} />
-			<Stats data={weatherData} />
-		</PageContainer>
+		<>
+			<GlobalStyles />
+			<PageContainer>
+				<Sidebar data={weatherData} />
+				<Stats data={weatherData} />
+			</PageContainer>
+		</>
 	);
 };
 

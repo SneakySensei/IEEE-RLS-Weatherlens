@@ -11,6 +11,26 @@ import WindStatus from "./WindStatus";
 const StatsContainer = styled.section`
 	flex: 6.5;
 	padding: 48px 42px 32px 42px;
+
+	h1 {
+		margin-top: 48px;
+	}
+
+	.stats {
+		margin-top: 32px;
+		display: grid;
+		grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+		row-gap: 24px;
+		column-gap: 16px;
+
+		article {
+			background-color: white;
+			border-radius: 16px;
+			min-height: 220px;
+			box-shadow: 0px 8px 24px rgba(149, 157, 165, 0.2);
+			padding: 1rem;
+		}
+	}
 `;
 
 const Stats = ({ data }) => {
