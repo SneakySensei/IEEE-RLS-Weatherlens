@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useSelector } from "react-redux";
 import styled from "styled-components";
 
 const LocationSelectorContainer = styled.div`
@@ -42,6 +43,8 @@ const preferredLocations = [
 const LocationSelector = ({ data }) => {
 	const [activeLocation, setActiveLocation] = useState(0);
 
+	const locationState = useSelector((state) => state.location);
+
 	const handleLeft = () => {
 		let temp = activeLocation;
 		temp--;
@@ -76,10 +79,10 @@ const LocationSelector = ({ data }) => {
 					/>
 				</svg>
 			</button>
-			{/* <div>{preferredLocations[activeLocation]}</div> */}
-			<div>
+			<div>{preferredLocations[activeLocation]}</div>
+			{/* <div>
 				{data?.name}, {data?.sys?.country}
-			</div>
+			</div> */}
 			<button onClick={handleRight}>
 				<svg
 					width="24"

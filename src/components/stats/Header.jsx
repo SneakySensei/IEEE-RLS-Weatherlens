@@ -1,4 +1,7 @@
 import styled from "styled-components";
+import { useSelector, useDispatch } from "react-redux";
+
+import { toggleUnit } from "../../store/config/actions";
 
 const HeaderContainer = styled.header`
 	display: flex;
@@ -33,11 +36,20 @@ const HeaderContainer = styled.header`
 `;
 
 const Header = () => {
+	const unitState = useSelector((state) => state.config.unit);
+	const dispatch = useDispatch();
+
+	console.log(unitState);
+
+	const handleToggleUnit = (e) => {
+		dispatch(toggleUnit());
+	};
+
 	return (
 		<HeaderContainer>
-			<button className="unit-toggle">
-				<div className="active">°C</div>
-				<div>°F</div>
+			<button onClick={handleToggleUnit} className="unit-toggle">
+				<div className={unitState === "metric" ? "active" : ""}>°C</div>
+				<div className={unitState === "imperial" ? "active" : ""}>°F</div>
 			</button>
 		</HeaderContainer>
 	);
