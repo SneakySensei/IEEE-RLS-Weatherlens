@@ -48,9 +48,11 @@ const SidebarContainer = styled.aside`
 	}
 `;
 
-const Sidebar = ({ data }) => {
+const Sidebar = () => {
 	const unitState = useSelector((state) => state.config.unit);
 	const locationState = useSelector((state) => state.location);
+
+	const data = locationState.preferred[locationState.active]?.data;
 
 	return (
 		<SidebarContainer>

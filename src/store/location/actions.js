@@ -1,4 +1,5 @@
 export const nextLocation = () => {
+	console.log("next");
 	return { type: "LOCATION_NEXT" };
 };
 
@@ -6,8 +7,12 @@ export const prevLocation = () => {
 	return { type: "LOCATION_PREV" };
 };
 
-export const addPreferredLocation = (name, id, data) => {
-	return { type: "LOCATION_ADD", name, id, data };
+export const addPreferredLocation = (name) => {
+	return { type: "LOCATION_ADD", name };
+};
+
+export const updateWeatherData = (name, data) => {
+	return { type: "LOCATION_UPDATE", name, data };
 };
 
 export const deleteLocationById = (id) => {

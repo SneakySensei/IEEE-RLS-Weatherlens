@@ -1,6 +1,6 @@
-import { useState } from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import styled from "styled-components";
+import { nextLocation, prevLocation } from "../../store/location/actions";
 
 const LocationSelectorContainer = styled.div`
 	margin-top: auto;
@@ -33,34 +33,16 @@ const LocationSelectorContainer = styled.div`
 	}
 `;
 
-const preferredLocations = [
-	"New York, US",
-	"Chennai, TN",
-	"Kolkata, WB",
-	"Delhi, IN",
-];
-
-const LocationSelector = ({ data }) => {
-	const [activeLocation, setActiveLocation] = useState(0);
-
+const LocationSelector = () => {
 	const locationState = useSelector((state) => state.location);
+	const dispatch = useDispatch();
 
 	const handleLeft = () => {
-		let temp = activeLocation;
-		temp--;
-		if (temp < 0) {
-			temp = preferredLocations.length - 1;
-		}
-		setActiveLocation(temp);
+		dispatch(prevLocation());
 	};
 
 	const handleRight = () => {
-		let temp = activeLocation;
-		temp++;
-		if (temp > preferredLocations.length - 1) {
-			temp = 0;
-		}
-		setActiveLocation(temp);
+		dispatch(nextLocation());
 	};
 
 	return (
@@ -79,10 +61,7 @@ const LocationSelector = ({ data }) => {
 					/>
 				</svg>
 			</button>
-			<div>{preferredLocations[activeLocation]}</div>
-			{/* <div>
-				{data?.name}, {data?.sys?.country}
-			</div> */}
+			<div>{locationState.preferred[locationState.active].name}</div>
 			<button onClick={handleRight}>
 				<svg
 					width="24"
