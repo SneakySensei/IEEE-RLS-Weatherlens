@@ -1,5 +1,4 @@
 export const nextLocation = () => {
-	console.log("next");
 	return { type: "LOCATION_NEXT" };
 };
 

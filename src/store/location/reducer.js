@@ -1,12 +1,13 @@
-const initialState = {
-	active: null,
-	preferred: [],
-};
+const initialState = localStorage.getItem("preferredLocations")
+	? JSON.parse(localStorage.getItem("preferredLocations"))
+	: {
+			active: null,
+			preferred: [],
+	  };
 
 const locationReducer = (state = initialState, action) => {
 	switch (action.type) {
 		case "LOCATION_NEXT":
-			console.log("next");
 			let nextLoc = state.active + 1;
 			if (nextLoc >= state.preferred.length) {
 				nextLoc = 0;
@@ -24,11 +25,18 @@ const locationReducer = (state = initialState, action) => {
 			};
 
 		case "LOCATION_ADD":
-			return {
+			const newAddLocation = {
 				...state,
 				active: state.preferred.length,
 				preferred: [...state.preferred, { name: action.name }],
 			};
+
+			localStorage.setItem(
+				"preferredLocations",
+				JSON.stringify(newAddLocation)
+			);
+
+			return newAddLocation;
 		case "LOCATION_UPDATE":
 			const prefLoc = [...state.preferred];
 			// find the index of action.name
@@ -43,7 +51,15 @@ const locationReducer = (state = initialState, action) => {
 		case "LOCATION_DELETE":
 			let preferred = [...state.preferred];
 			preferred = preferred.filter((location) => action.id !== location.id);
-			return { ...state, preferred };
+			const newDeleteLocation = { ...state, preferred };
+
+			localStorage.setItem(
+				"preferredLocations",
+				JSON.stringify(newDeleteLocation)
+			);
+
+			return newDeleteLocation;
+
 		default:
 			return state;
 	}

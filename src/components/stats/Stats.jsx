@@ -1,3 +1,4 @@
+import moment from "moment";
 import { useSelector } from "react-redux";
 import styled from "styled-components";
 
@@ -41,8 +42,11 @@ const StatsContainer = styled.section`
 	}
 `;
 
-const Stats = ({ data }) => {
+const Stats = () => {
 	const locationState = useSelector((state) => state.location);
+	const unit = useSelector((state) => state.config.unit);
+
+	const data = locationState.preferred[locationState.active]?.data;
 
 	return (
 		<StatsContainer className="main-content">
@@ -56,11 +60,22 @@ const Stats = ({ data }) => {
 			)}
 			{locationState.preferred.length > 0 && (
 				<section className="stats">
-					<MinMaxTemp minTemp={20} maxTemp={25} unit="F" />
-					<WindStatus speed={7.7} direction={135} />
-					<SunriseSunset riseTime={"6:35AM"} setTime={"5:42PM"} />
-					<Humidity humidity={12} />
-					<Visibility visibility={2.0} />
+					<MinMaxTemp
+						minTemp={data?.main?.temp_min}
+						maxTemp={data?.main?.temp_max}
+						unit={unit === "metric" ? "C" : "F"}
+					/>
+					<WindStatus
+						speed={data?.wind?.speed}
+						direction={data?.wind?.deg}
+						unit={unit === "metric" ? "m/s" : "mph"}
+					/>
+					<SunriseSunset
+						riseTime={moment(data?.sys?.sunrise * 1000).format("h:mm A")}
+						setTime={moment(data?.sys?.sunset * 1000).format("h:mm A")}
+					/>
+					<Humidity humidity={data?.main?.humidity} />
+					<Visibility visibility={data?.visibility / 1000} />
 					<AirQuality indexValue={data?.air?.list[0].main.aqi} />
 				</section>
 			)}

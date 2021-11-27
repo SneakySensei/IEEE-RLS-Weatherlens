@@ -42,7 +42,7 @@ const WindCard = styled.article`
 
 const directionNames = ["E", "NE", "N", "NW", "W", "SW", "S", "SE"];
 
-const WindStatus = ({ speed, direction }) => {
+const WindStatus = ({ speed = 0, direction = 0, unit }) => {
 	let dir = 0;
 	if ((direction > 0) & (direction < 90)) {
 		dir = 1;
@@ -66,8 +66,8 @@ const WindStatus = ({ speed, direction }) => {
 		<WindCard direction={direction}>
 			<h2>Wind Status</h2>
 			<h3>
-				{speed}
-				<span> km/h</span>
+				{speed.toPrecision(3)}
+				<span> {unit}</span>
 			</h3>
 			<footer>
 				<RiCompassDiscoverLine size={28} />

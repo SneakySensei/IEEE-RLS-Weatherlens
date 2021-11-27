@@ -38,12 +38,12 @@ const MinMaxCard = styled.article`
 	}
 `;
 
-const MinMaxTemp = ({ minTemp, maxTemp, unit }) => {
+const MinMaxTemp = ({ minTemp = 0, maxTemp = 0, unit }) => {
 	return (
 		<MinMaxCard>
 			<h2>Min/Max Temperature</h2>
 			<div>
-				{maxTemp}°{unit} <span>Max</span>
+				{maxTemp.toPrecision(2)}°{unit} <span>Max</span>
 			</div>
 			<div className="separator">
 				<svg
@@ -71,7 +71,7 @@ const MinMaxTemp = ({ minTemp, maxTemp, unit }) => {
 				<hr />
 			</div>
 			<div>
-				{minTemp}°{unit} <span>Min</span>
+				{minTemp.toPrecision(2)}°{unit} <span>Min</span>
 			</div>
 		</MinMaxCard>
 	);

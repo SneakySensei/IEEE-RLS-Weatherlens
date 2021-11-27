@@ -13,17 +13,17 @@ const HeaderContainer = styled.header`
 		display: flex;
 		align-items: center;
 		gap: 16px;
-		font-size: 16pt;
+		font-size: 14pt;
 
 		div {
-			width: 40px;
-			height: 40px;
+			line-height: 100%;
+			padding: 0.5rem 1rem;
 			border-radius: 20px;
 			display: grid;
 			place-items: center;
 
 			&.active {
-				background-color: black;
+				background-color: #4050d2;
 				color: white;
 			}
 
@@ -39,8 +39,6 @@ const Header = () => {
 	const unitState = useSelector((state) => state.config.unit);
 	const dispatch = useDispatch();
 
-	console.log(unitState);
-
 	const handleToggleUnit = (e) => {
 		dispatch(toggleUnit());
 	};
@@ -48,8 +46,8 @@ const Header = () => {
 	return (
 		<HeaderContainer>
 			<button onClick={handleToggleUnit} className="unit-toggle">
-				<div className={unitState === "metric" ? "active" : ""}>°C</div>
-				<div className={unitState === "imperial" ? "active" : ""}>°F</div>
+				<div className={unitState === "metric" ? "active" : ""}>°C, m/s</div>
+				<div className={unitState === "imperial" ? "active" : ""}>°F, mph</div>
 			</button>
 		</HeaderContainer>
 	);

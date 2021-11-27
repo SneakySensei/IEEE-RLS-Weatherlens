@@ -24,12 +24,12 @@ const VisibilityCard = styled.article`
 	}
 `;
 
-const Visibility = ({ visibility }) => {
+const Visibility = ({ visibility = 0 }) => {
 	return (
 		<VisibilityCard>
 			<h2>Visibility</h2>
 			<div>
-				{visibility}
+				{visibility.toPrecision(3)}
 				<span> km</span>
 			</div>
 		</VisibilityCard>
